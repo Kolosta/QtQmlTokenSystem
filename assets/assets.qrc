@@ -1,0 +1,11 @@
+<!DOCTYPE RCC>
+<RCC version="1.0">
+  <qresource prefix="/">
+    <file>icons/chevron-left.svg</file>
+    <file>icons/chevron-down.svg</file>
+    <file>icons/app_icon.svg</file>
+    <file>icons/chevron-right.svg</file>
+    <file>icons/settings.svg</file>
+    <file>icons/chevron-up.svg</file>
+  </qresource>
+</RCC>
