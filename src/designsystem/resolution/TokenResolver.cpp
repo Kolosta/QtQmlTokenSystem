@@ -58,8 +58,6 @@ QVariant TokenResolver::resolvePipeline(const TokenPath& path) {
 }
 
 QVariant TokenResolver::resolvePipelineWithTheme(const TokenPath& path, ThemeType theme) {
-    qDebug() << "TokenResolver: Resolving" << path.toString() << "for theme" << static_cast<int>(theme);
-    
     // 1. Get semantic token
     auto semantic = m_storage->getSemantic(path);
     if (!semantic) {
@@ -68,20 +66,16 @@ QVariant TokenResolver::resolvePipelineWithTheme(const TokenPath& path, ThemeTyp
     }
     
     TokenPath currentRef = semantic->reference;
-    qDebug() << "  Base reference:" << currentRef.toString();
     
     // 2. Check if THEME has a redirect for THIS SEMANTIC TOKEN
     TokenPath themedToken = m_contextManager->themeManager()->resolveThemeTokenForTheme(path, theme);
     if (themedToken != path) {
-        qDebug() << "  Theme redirects to:" << themedToken.toString();
         currentRef = themedToken;
     }
-    qDebug() << "  After theme resolution:" << currentRef.toString();
     
     // 3. Check for overrides (GLOBAL has PRIORITY over THEME)
     // First check GLOBAL override
     if (auto override = m_contextManager->overrideManager()->getGlobalOverride(path)) {
-        qDebug() << "  Global override found:" << override->value;
         QVariant value = override->value;
         
         // If already a concrete value, apply colorblind and return
@@ -89,20 +83,16 @@ QVariant TokenResolver::resolvePipelineWithTheme(const TokenPath& path, ThemeTyp
             if (value.canConvert<QColor>()) {
                 QColor color = value.value<QColor>();
                 color = m_contextManager->colorBlindFilter()->applyFilter(color);
-                qDebug() << "  Final (global override + colorblind):" << color;
                 return color;
             }
-            qDebug() << "  Final (global override):" << value;
             return value;
         }
         
         // Override is a TokenPath, dereference it
         currentRef = value.value<TokenPath>();
-        qDebug() << "  Global override is reference:" << currentRef.toString();
     }
     // Then check THEME override (only if no global override)
     else if (auto override = m_contextManager->overrideManager()->getThemeOverride(path, theme)) {
-        qDebug() << "  Theme override found:" << override->value;
         QVariant value = override->value;
         
         // If already a concrete value, apply colorblind and return
@@ -110,31 +100,25 @@ QVariant TokenResolver::resolvePipelineWithTheme(const TokenPath& path, ThemeTyp
             if (value.canConvert<QColor>()) {
                 QColor color = value.value<QColor>();
                 color = m_contextManager->colorBlindFilter()->applyFilter(color);
-                qDebug() << "  Final (theme override + colorblind):" << color;
                 return color;
             }
-            qDebug() << "  Final (theme override):" << value;
             return value;
         }
         
         // Override is a TokenPath, dereference it
         currentRef = value.value<TokenPath>();
-        qDebug() << "  Theme override is reference:" << currentRef.toString();
     }
     
     // 4. Dereference to primitive value
     QVariant value = dereferencePrimitive(QVariant::fromValue(currentRef));
-    qDebug() << "  Dereferenced:" << value;
     
     // 5. Apply colorblind filter if it's a color
     if (value.canConvert<QColor>()) {
         QColor color = value.value<QColor>();
         color = m_contextManager->colorBlindFilter()->applyFilter(color);
-        qDebug() << "  After colorblind:" << color;
         return color;
     }
     
-    qDebug() << "  Final:" << value;
     return value;
 }
 
@@ -164,7 +148,6 @@ QVariant TokenResolver::dereferencePrimitive(const QVariant& value) {
 }
 
 void TokenResolver::onContextChanged() {
-    qDebug() << "TokenResolver: Context changed, clearing cache";
     m_cache.clear();
     
     // Emit with wildcard to invalidate all

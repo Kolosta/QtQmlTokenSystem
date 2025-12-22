@@ -14,7 +14,6 @@ DesignSystemRoot::DesignSystemRoot(QObject* parent)
 }
 
 void DesignSystemRoot::initialize(TokenResolver* resolver, ContextManager* contextManager) {
-    qDebug() << "DesignSystemRoot: Initializing";
     
     m_resolver = resolver;
     m_contextManager = contextManager;
@@ -24,8 +23,6 @@ void DesignSystemRoot::initialize(TokenResolver* resolver, ContextManager* conte
     m_spacing = new SpacingProxy(resolver, this);
     m_radius = new RadiusProxy(resolver, this);
     m_border = new BorderProxy(resolver, this);
-    
-    qDebug() << "DesignSystemRoot: All proxies created";
 }
 
 } // namespace DS

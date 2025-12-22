@@ -145,6 +145,7 @@ void TokenStorage::initializeSemantics() {
     m_semanticTokens[TokenPath("color.surface.secondary")] = SemanticToken{TokenPath("primitive.color.neutral.800")};
     m_semanticTokens[TokenPath("color.surface.tertiary")] = SemanticToken{TokenPath("primitive.color.neutral.700")};
     m_semanticTokens[TokenPath("color.surface.inverse")] = SemanticToken{TokenPath("primitive.color.neutral.0")};
+    m_semanticTokens[TokenPath("color.surface.hover")] = SemanticToken{TokenPath("primitive.color.neutral.700")};
     
     // ==================== BACKGROUND COLORS ====================
     m_semanticTokens[TokenPath("color.background.primary")] = SemanticToken{TokenPath("primitive.color.neutral.900")};

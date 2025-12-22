@@ -10,6 +10,7 @@
 #include "designsystem/resolution/TokenResolver.h"
 #include "designsystem/exposer/DesignSystemRoot.h"
 #include "designsystem/scaling/ScaleManager.h"
+#include "keymap/KeymapManager.h"
 
 int main(int argc, char *argv[]) {
     QGuiApplication app(argc, argv);
@@ -36,12 +37,13 @@ int main(int argc, char *argv[]) {
     
     auto* tokenResolver = new DS::TokenResolver(contextManager, &app);
     tokenResolver->initialize();
-
-    auto* scaleManager = ScaleManager::instance();
-    scaleManager->loadScale();
     
     auto* designSystemRoot = DS::DesignSystemRoot::instance();
     designSystemRoot->initialize(tokenResolver, contextManager);
+
+    // Initialize managers
+    auto* scaleManager = DS::ScaleManager::instance();
+    auto* keymapManager = DS::KeymapManager::instance();
 
 
     QQuickStyle::setStyle("Basic");
@@ -51,15 +53,8 @@ int main(int argc, char *argv[]) {
 
     // Expose DS to QML
     engine.rootContext()->setContextProperty("DS", designSystemRoot);
-
-    // qmlRegisterSingletonType<ScaleManager>(
-    //     "DesignSystem", 1, 0, "ScaleManager",
-    //     [](QQmlEngine* engine, QJSEngine* scriptEngine) -> QObject* {
-    //         Q_UNUSED(engine)
-    //         Q_UNUSED(scriptEngine)
-    //         return ScaleManager::instance();
-    //     }
-    // );
+    engine.rootContext()->setContextProperty("ScaleManager", scaleManager);
+    engine.rootContext()->setContextProperty("KeymapManager", keymapManager);
 
     // Register TokenInspector singleton
     // qmlRegisterSingletonType<TokenInspector>(
@@ -96,6 +91,16 @@ int main(int argc, char *argv[]) {
     //     qDebug() << "ThemePersistence OK";
     //     ScaleManager::instance()->saveScale();
     //     qDebug() << "Final save complete - all settings persisted";
+    // });
+
+
+
+    // Save on exit
+    // QObject::connect(&app, &QGuiApplication::aboutToQuit, [contextManager, scaleManager, keymapManager]() {
+    //     contextManager->save();
+    //     scaleManager->saveScale();
+    //     keymapManager->saveKeymaps();
+    //     qDebug() << "All settings saved";
     // });
     
     return app.exec();

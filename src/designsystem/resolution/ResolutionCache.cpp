@@ -25,7 +25,6 @@ void ResolutionCache::invalidate(std::function<bool(const CacheKey&)> predicate)
 }
 
 void ResolutionCache::invalidatePath(const TokenPath& path) {
-    qDebug() << "ResolutionCache::invalidatePath called for" << path.toString();
     
     int removed = 0;
     invalidate([&path, &removed](const CacheKey& key) {
@@ -35,12 +34,9 @@ void ResolutionCache::invalidatePath(const TokenPath& path) {
         }
         return false;
     });
-    
-    qDebug() << "  Removed" << removed << "entries from cache";
 }
 
 void ResolutionCache::clear() {
-    qDebug() << "ResolutionCache: Clearing all" << m_cache.size() << "entries";
     m_cache.clear();
 }
 

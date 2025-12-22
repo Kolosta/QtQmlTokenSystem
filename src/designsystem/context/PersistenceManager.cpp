@@ -9,26 +9,22 @@ PersistenceManager::PersistenceManager(QObject* parent) : QObject(parent) {}
 void PersistenceManager::saveTheme(ThemeType theme) {
     QSettings settings("Koebi", "DesignSystemDemo");
     settings.setValue("theme", static_cast<int>(theme));
-    qDebug() << "PersistenceManager: Saved theme" << static_cast<int>(theme);
 }
 
 ThemeType PersistenceManager::loadTheme() {
     QSettings settings("Koebi", "DesignSystemDemo");
     int themeInt = settings.value("theme", 0).toInt();
-    qDebug() << "PersistenceManager: Loaded theme" << themeInt;
     return static_cast<ThemeType>(themeInt);
 }
 
 void PersistenceManager::saveColorBlind(ColorBlindType type) {
     QSettings settings("Koebi", "DesignSystemDemo");
     settings.setValue("colorblind", static_cast<int>(type));
-    qDebug() << "PersistenceManager: Saved colorblind" << static_cast<int>(type);
 }
 
 ColorBlindType PersistenceManager::loadColorBlind() {
     QSettings settings("Koebi", "DesignSystemDemo");
     int typeInt = settings.value("colorblind", 0).toInt();
-    qDebug() << "PersistenceManager: Loaded colorblind" << typeInt;
     return static_cast<ColorBlindType>(typeInt);
 }
 
@@ -51,14 +47,13 @@ void PersistenceManager::saveOverrides(const std::unordered_map<TokenPath, Overr
         settings.setValue("scope", static_cast<int>(override.scope));
         settings.setValue("theme", static_cast<int>(override.targetTheme));
         
-        qDebug() << "  Saving override:" << override.path.toString()
-                 << "scope:" << static_cast<int>(override.scope)
-                 << "theme:" << static_cast<int>(override.targetTheme)
-                 << "value:" << override.value;
+        // qDebug() << "  Saving override:" << override.path.toString()
+        //          << "scope:" << static_cast<int>(override.scope)
+        //          << "theme:" << static_cast<int>(override.targetTheme)
+        //          << "value:" << override.value;
     }
     
     settings.endArray();
-    qDebug() << "PersistenceManager: Saved" << overrides.size() << "overrides";
 }
 
 std::unordered_map<TokenPath, Override> PersistenceManager::loadOverrides() {
@@ -66,7 +61,6 @@ std::unordered_map<TokenPath, Override> PersistenceManager::loadOverrides() {
     QSettings settings("Koebi", "DesignSystemDemo");
     
     int size = settings.beginReadArray("Overrides");
-    qDebug() << "PersistenceManager: Loading" << size << "overrides";
     
     for (int i = 0; i < size; ++i) {
         settings.setArrayIndex(i);
@@ -86,14 +80,13 @@ std::unordered_map<TokenPath, Override> PersistenceManager::loadOverrides() {
         
         overrides[key] = Override{path, value, scope, theme};
         
-        qDebug() << "  Loaded override:" << pathStr
-                 << "scope:" << static_cast<int>(scope)
-                 << "theme:" << static_cast<int>(theme)
-                 << "key:" << fullKey;
+        // qDebug() << "  Loaded override:" << pathStr
+        //          << "scope:" << static_cast<int>(scope)
+        //          << "theme:" << static_cast<int>(theme)
+        //          << "key:" << fullKey;
     }
     settings.endArray();
     
-    qDebug() << "PersistenceManager: Loaded" << overrides.size() << "overrides total";
     return overrides;
 }
 

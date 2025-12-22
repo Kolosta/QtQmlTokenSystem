@@ -68,7 +68,7 @@ Button {
     
     function getTextColor() {
         if (!control.enabled) {
-            return DS.color.text.disabled
+            return DS.color.text.primary
         }
         
         return buttonType === "secondary" ? DS.color.text.primary : "white"
@@ -83,6 +83,6 @@ Button {
             return control.hovered ? DS.color.accent.primary : DS.color.border.default
         }
         
-        return "transparent"
+        return DS.color.border.strong
     }
 }

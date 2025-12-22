@@ -11,7 +11,6 @@ ThemeManager::ThemeManager(QObject* parent) : QObject(parent) {
 void ThemeManager::setCurrentTheme(ThemeType theme) {
     if (m_currentTheme != theme) {
         m_currentTheme = theme;
-        qDebug() << "ThemeManager: Theme changed to" << static_cast<int>(theme);
         emit themeChanged();
     }
 }
@@ -25,8 +24,6 @@ TokenPath ThemeManager::resolveThemeTokenForTheme(const TokenPath& path, ThemeTy
     
     if (themeMap) {
         if (auto it = themeMap->find(path); it != themeMap->end()) {
-            qDebug() << "  Theme" << static_cast<int>(theme) << "redirects" 
-                     << path.toString() << "→" << it->second.toString();
             return it->second;
         }
     }
@@ -52,7 +49,6 @@ void ThemeManager::initializeThemes() {
 }
 
 void ThemeManager::initializeArcticTheme() {
-    qDebug() << "Initializing Arctic theme (light, cool blue tones)";
     
     // === SURFACE - Tons clairs bleutés ===
     m_arcticMap[TokenPath("color.surface.primary")] = TokenPath("primitive.color.blue.50");
@@ -86,13 +82,9 @@ void ThemeManager::initializeArcticTheme() {
     m_arcticMap[TokenPath("color.status.success")] = TokenPath("primitive.color.green.600");
     m_arcticMap[TokenPath("color.status.warning")] = TokenPath("primitive.color.orange.600");
     m_arcticMap[TokenPath("color.status.error")] = TokenPath("primitive.color.red.600");
-    
-    qDebug() << "  Arctic theme:" << m_arcticMap.size() << "redirects configured";
 }
 
 void ThemeManager::initializeMutedGreenTheme() {
-    qDebug() << "Initializing Muted Green theme (dark, muted green tones)";
-    
     // === SURFACE - Tons sombres avec nuance verte ===
     m_mutedGreenMap[TokenPath("color.surface.primary")] = TokenPath("primitive.color.green.900");
     m_mutedGreenMap[TokenPath("color.surface.secondary")] = TokenPath("primitive.color.green.800");
@@ -125,8 +117,6 @@ void ThemeManager::initializeMutedGreenTheme() {
     m_mutedGreenMap[TokenPath("color.status.success")] = TokenPath("primitive.color.green.400");
     m_mutedGreenMap[TokenPath("color.status.warning")] = TokenPath("primitive.color.yellow.600");
     m_mutedGreenMap[TokenPath("color.status.error")] = TokenPath("primitive.color.red.500");
-    
-    qDebug() << "  Muted Green theme:" << m_mutedGreenMap.size() << "redirects configured";
 }
 
 } // namespace DS

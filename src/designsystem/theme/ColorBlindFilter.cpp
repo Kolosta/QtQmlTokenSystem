@@ -9,7 +9,6 @@ ColorBlindFilter::ColorBlindFilter(QObject* parent) : QObject(parent) {}
 void ColorBlindFilter::setType(ColorBlindType type) {
     if (m_type != type) {
         m_type = type;
-        qDebug() << "ColorBlindFilter: Type changed to" << static_cast<int>(type);
         emit typeChanged();
     }
 }

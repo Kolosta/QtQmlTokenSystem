@@ -15,15 +15,12 @@ ContextManager::ContextManager(QObject* parent)
 }
 
 void ContextManager::initialize() {
-    qDebug() << "ContextManager: Initializing";
-    
     // Connect colorblind filter to theme manager for previews
     m_themeManager->setColorBlindFilter(m_colorBlindFilter);
     
     // Connect theme changes
     connect(m_themeManager, &ThemeManager::themeChanged,
             this, [this]() {
-        qDebug() << "ContextManager: Theme changed";
         emit themeChanged();
         emit contextChanged();
         save();
@@ -32,7 +29,6 @@ void ContextManager::initialize() {
     // Connect colorblind changes
     connect(m_colorBlindFilter, &ColorBlindFilter::typeChanged,
             this, [this]() {
-        qDebug() << "ContextManager: ColorBlind changed";
         emit contextChanged();
         save();
     });
@@ -40,14 +36,12 @@ void ContextManager::initialize() {
     // Connect override changes
     connect(m_overrideManager, &OverrideManager::overrideChanged,
             this, [this](const TokenPath&) {
-        qDebug() << "ContextManager: Override changed";
         emit contextChanged();
         save();
     });
     
     connect(m_overrideManager, &OverrideManager::overrideRemoved,
             this, [this](const TokenPath&) {
-        qDebug() << "ContextManager: Override removed";
         emit contextChanged();
         save();
     });
@@ -79,7 +73,6 @@ void ContextManager::setOverride(const QString& pathStr, const QVariant& value, 
             QColor color(strValue);
             if (color.isValid()) {
                 convertedValue = QVariant::fromValue(color);
-                qDebug() << "  Converted string to QColor:" << color;
             }
         }
     }
@@ -235,14 +228,12 @@ QVariant ContextManager::resolveTokenForTheme(const QString& pathStr, int themeI
 }
 
 void ContextManager::clearAllGlobalOverrides() {
-    qDebug() << "ContextManager::clearAllGlobalOverrides called";
     m_overrideManager->clearAllGlobal();
     emit contextChanged();  // Force refresh
     save();
 }
 
 void ContextManager::clearAllThemeOverrides() {
-    qDebug() << "ContextManager::clearAllThemeOverrides called";
     ThemeType theme = m_themeManager->currentTheme();
     m_overrideManager->clearAllTheme(theme);
     emit contextChanged();  // Force refresh
@@ -259,22 +250,17 @@ void ContextManager::save() {
 }
 
 void ContextManager::load() {
-    qDebug() << "ContextManager: Loading settings";
-    
     // Load overrides FIRST
     auto overrides = m_persistenceManager->loadOverrides();
     m_overrideManager->setAllOverrides(overrides);
-    qDebug() << "  Loaded" << overrides.size() << "overrides";
     
     // Then load theme
     ThemeType theme = m_persistenceManager->loadTheme();
     m_themeManager->setCurrentTheme(theme);
-    qDebug() << "  Restored theme:" << static_cast<int>(theme);
     
     // Finally load colorblind
     ColorBlindType colorBlind = m_persistenceManager->loadColorBlind();
     m_colorBlindFilter->setType(colorBlind);
-    qDebug() << "  Restored colorblind:" << static_cast<int>(colorBlind);
 }
 
 } // namespace DS

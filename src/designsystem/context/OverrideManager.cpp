@@ -9,18 +9,18 @@ void OverrideManager::setOverride(const TokenPath& path, const QVariant& value,
                                  OverrideScope scope, ThemeType theme) {
     TokenPath key = makeKey(path, scope, theme);
     
-    qDebug() << "==================================================";
-    qDebug() << "OverrideManager::setOverride";
-    qDebug() << "  Path:" << path.toString();
-    qDebug() << "  Value:" << value;
-    qDebug() << "  Scope:" << (scope == OverrideScope::Global ? "Global" : "PerTheme");
-    qDebug() << "  Theme:" << static_cast<int>(theme);
-    qDebug() << "  Storage key:" << key.toString();
+    // qDebug() << "==================================================";
+    // qDebug() << "OverrideManager::setOverride";
+    // qDebug() << "  Path:" << path.toString();
+    // qDebug() << "  Value:" << value;
+    // qDebug() << "  Scope:" << (scope == OverrideScope::Global ? "Global" : "PerTheme");
+    // qDebug() << "  Theme:" << static_cast<int>(theme);
+    // qDebug() << "  Storage key:" << key.toString();
     
     m_overrides[key] = Override{path, value, scope, theme};
     
-    qDebug() << "  Map size:" << m_overrides.size();
-    qDebug() << "==================================================";
+    // qDebug() << "  Map size:" << m_overrides.size();
+    // qDebug() << "==================================================";
     
     emit overrideChanged(path);
 }
@@ -28,12 +28,12 @@ void OverrideManager::setOverride(const TokenPath& path, const QVariant& value,
 void OverrideManager::removeOverride(const TokenPath& path, OverrideScope scope, ThemeType theme) {
     TokenPath key = makeKey(path, scope, theme);
     
-    qDebug() << "OverrideManager::removeOverride";
-    qDebug() << "  Path:" << path.toString();
-    qDebug() << "  Key:" << key.toString();
+    // qDebug() << "OverrideManager::removeOverride";
+    // qDebug() << "  Path:" << path.toString();
+    // qDebug() << "  Key:" << key.toString();
     
     if (m_overrides.erase(key) > 0) {
-        qDebug() << "  Removed successfully";
+        // qDebug() << "  Removed successfully";
         emit overrideRemoved(path);
     } else {
         qDebug() << "  Not found";
@@ -96,21 +96,17 @@ void OverrideManager::clearAll() {
 }
 
 void OverrideManager::clearAllGlobal() {
-    qDebug() << "OverrideManager::clearAllGlobal - Removing all global overrides";
     
     // Remove all entries with "global." prefix
     std::vector<TokenPath> removedPaths;
     for (auto it = m_overrides.begin(); it != m_overrides.end();) {
         if (it->first.toString().startsWith("global.")) {
-            qDebug() << "  Removing:" << it->first.toString();
             removedPaths.push_back(it->second.path);
             it = m_overrides.erase(it);
         } else {
             ++it;
         }
     }
-    
-    qDebug() << "  Cleared all global overrides";
     
     // Emit signals for all removed paths
     for (const auto& path : removedPaths) {
@@ -122,7 +118,6 @@ void OverrideManager::clearAllGlobal() {
 }
 
 void OverrideManager::clearAllTheme(ThemeType theme) {
-    qDebug() << "OverrideManager::clearAllTheme - Removing all theme overrides for theme" << static_cast<int>(theme);
     
     // Remove all entries with "pertheme.<themeIndex>." prefix
     QString prefix = "pertheme." + QString::number(static_cast<int>(theme)) + ".";
@@ -130,15 +125,12 @@ void OverrideManager::clearAllTheme(ThemeType theme) {
     std::vector<TokenPath> removedPaths;
     for (auto it = m_overrides.begin(); it != m_overrides.end();) {
         if (it->first.toString().startsWith(prefix)) {
-            qDebug() << "  Removing:" << it->first.toString();
             removedPaths.push_back(it->second.path);
             it = m_overrides.erase(it);
         } else {
             ++it;
         }
     }
-    
-    qDebug() << "  Cleared all theme overrides for theme" << static_cast<int>(theme);
     
     // Emit signals for all removed paths
     for (const auto& path : removedPaths) {
