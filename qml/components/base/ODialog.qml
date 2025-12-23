@@ -326,7 +326,7 @@ Item {
                 
                 color: DS.color.surface.primary
                 radius: DS.radius.lg
-                border.color: control.flashBorder ? DS.color.status.warning : DS.color.border.default
+                border.color: control.flashBorder ? DS.color.status.warning : DS.color.border.base
                 border.width: control.flashBorder ? 3 : DS.border.thin
                 
                 scale: 0.9

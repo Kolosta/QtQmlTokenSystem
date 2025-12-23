@@ -173,7 +173,7 @@ GroupBox {
                 background: Rectangle {
                     color: DS.color.surface.secondary
                     radius: DS.radius.sm
-                    border.color: textField.focus ? DS.color.accent.primary : DS.color.border.default
+                    border.color: textField.focus ? DS.color.accent.primary : DS.color.border.base
                     border.width: DS.border.thin
                 }
             }
@@ -269,7 +269,7 @@ GroupBox {
                         height: 20
                         radius: 10
                         color: slider.pressed ? Qt.darker(DS.color.accent.primary, 1.2) : DS.color.accent.primary
-                        border.color: DS.color.border.default
+                        border.color: DS.color.border.base
                         border.width: 1
                     }
                 }

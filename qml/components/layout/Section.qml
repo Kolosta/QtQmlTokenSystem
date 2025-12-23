@@ -21,7 +21,7 @@ Item {
         height: mainLayout.implicitHeight
         color: DS.color.surface.primary
         border.width: DS.border.thin
-        border.color: DS.color.border.default
+        border.color: DS.color.border.base
         radius: DS.radius.md
         
         ColumnLayout {

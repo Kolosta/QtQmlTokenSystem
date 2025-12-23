@@ -146,6 +146,7 @@ void TokenStorage::initializeSemantics() {
     m_semanticTokens[TokenPath("color.surface.tertiary")] = SemanticToken{TokenPath("primitive.color.neutral.700")};
     m_semanticTokens[TokenPath("color.surface.inverse")] = SemanticToken{TokenPath("primitive.color.neutral.0")};
     m_semanticTokens[TokenPath("color.surface.hover")] = SemanticToken{TokenPath("primitive.color.neutral.700")};
+    m_semanticTokens[TokenPath("color.surface.active")] = SemanticToken{TokenPath("primitive.color.neutral.800")};
     
     // ==================== BACKGROUND COLORS ====================
     m_semanticTokens[TokenPath("color.background.primary")] = SemanticToken{TokenPath("primitive.color.neutral.900")};
@@ -159,9 +160,10 @@ void TokenStorage::initializeSemantics() {
     m_semanticTokens[TokenPath("color.text.inverse")] = SemanticToken{TokenPath("primitive.color.neutral.900")};
     
     // ==================== BORDER COLORS ====================
-    m_semanticTokens[TokenPath("color.border.default")] = SemanticToken{TokenPath("primitive.color.neutral.700")};
+    m_semanticTokens[TokenPath("color.border.base")] = SemanticToken{TokenPath("primitive.color.neutral.700")};
     m_semanticTokens[TokenPath("color.border.subtle")] = SemanticToken{TokenPath("primitive.color.neutral.800")};
     m_semanticTokens[TokenPath("color.border.strong")] = SemanticToken{TokenPath("primitive.color.neutral.600")};
+    m_semanticTokens[TokenPath("color.border.active")] = SemanticToken{TokenPath("primitive.color.neutral.500")};
     
     // ==================== ACCENT COLORS ====================
     m_semanticTokens[TokenPath("color.accent.primary")] = SemanticToken{TokenPath("primitive.color.blue.600")};

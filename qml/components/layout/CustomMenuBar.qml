@@ -24,7 +24,7 @@ Rectangle {
                     implicitWidth: 250
                     color: DS.color.surface.primary
                     border.width: DS.border.thin
-                    border.color: DS.color.border.default
+                    border.color: DS.color.border.base
                     radius: DS.radius.sm
                 }
                 
@@ -59,7 +59,7 @@ Rectangle {
                     implicitWidth: 250
                     color: DS.color.surface.primary
                     border.width: DS.border.thin
-                    border.color: DS.color.border.default
+                    border.color: DS.color.border.base
                     radius: DS.radius.sm
                 }
                 
@@ -81,7 +81,7 @@ Rectangle {
                     implicitWidth: 250
                     color: DS.color.surface.primary
                     border.width: DS.border.thin
-                    border.color: DS.color.border.default
+                    border.color: DS.color.border.base
                     radius: DS.radius.sm
                 }
                 
@@ -111,7 +111,7 @@ Rectangle {
         anchors.bottom: parent.bottom
         width: parent.width
         height: DS.border.thin
-        color: DS.color.border.default
+        color: DS.color.border.base
     }
     
     // Components

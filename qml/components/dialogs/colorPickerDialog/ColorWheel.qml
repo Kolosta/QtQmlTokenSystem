@@ -93,7 +93,7 @@ Item {
             }
             
             // Bordure
-            ctx.strokeStyle = DS.color.border.default_
+            ctx.strokeStyle = DS.color.border.base
             ctx.lineWidth = 2
             ctx.beginPath()
             ctx.arc(centerX, centerY, radius, 0, Math.PI * 2)

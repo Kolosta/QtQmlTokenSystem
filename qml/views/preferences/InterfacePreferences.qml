@@ -54,7 +54,7 @@ ScrollView {
                         height: 50
                         color: DS.color.surface.secondary
                         radius: DS.radius.md
-                        border.color: DS.color.border.default
+                        border.color: DS.color.border.base
                         border.width: DS.border.thin
                         
                         Text {

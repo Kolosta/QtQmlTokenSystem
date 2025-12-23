@@ -31,15 +31,16 @@ Button {
             if (root.down) {
                 return DS.color.border.strong
             } else if (root.hovered) {
-                return DS.color.border.default
+                return DS.color.border.base
             } else if (!root.enabled) {
                 return DS.color.border.subtle
             } else {
-                return DS.color.border.default
+                return DS.color.border.base
             }
         }
 
         border.width: DS.border.width.thin
+        // border.width: DS.spacing.xxxs
         radius: DS.radius.md
 
         Behavior on color {

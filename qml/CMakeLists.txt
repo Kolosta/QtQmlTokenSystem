@@ -50,7 +50,6 @@ qt_add_qml_module(QmlModule
         editor/ThemePreviewCard.qml
 
         # Demo
-        demo/DemoArea.qml
         demo/OSliderTest.qml
 
 )

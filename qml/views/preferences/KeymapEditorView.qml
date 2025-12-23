@@ -99,7 +99,7 @@
 // // //                 Layout.preferredHeight: 36
 // // //                 color: row.isEditing ? DS.color.accent.primary : DS.color.surface.secondary
 // // //                 radius: DS.radius.sm
-// // //                 border.color: DS.color.border.default
+// // //                 border.color: DS.color.border.base
 // // //                 border.width: DS.border.thin
                 
 // // //                 Behavior on color { ColorAnimation { duration: 150 } }
@@ -231,7 +231,7 @@
 // // //             background: Rectangle {
 // // //                 color: DS.color.surface.primary
 // // //                 radius: DS.radius.lg
-// // //                 border.color: DS.color.border.default
+// // //                 border.color: DS.color.border.base
 // // //                 border.width: DS.border.thin
 // // //             }
 // // //         }
@@ -380,7 +380,7 @@
 // //                 Layout.preferredHeight: 36
 // //                 color: row.isEditing ? DS.color.accent.primary : DS.color.surface.secondary
 // //                 radius: DS.radius.sm
-// //                 border.color: DS.color.border.default
+// //                 border.color: DS.color.border.base
 // //                 border.width: DS.border.thin
                 
 // //                 Behavior on color { ColorAnimation { duration: 150 } }
@@ -522,7 +522,7 @@
 // //             background: Rectangle {
 // //                 color: DS.color.surface.primary
 // //                 radius: DS.radius.lg
-// //                 border.color: DS.color.border.default
+// //                 border.color: DS.color.border.base
 // //                 border.width: DS.border.thin
 // //             }
 // //         }
@@ -735,7 +735,7 @@
 //                 Layout.preferredHeight: 36
 //                 color: row.isEditing ? DS.color.accent.primary : DS.color.surface.secondary
 //                 radius: DS.radius.sm
-//                 border.color: DS.color.border.default
+//                 border.color: DS.color.border.base
 //                 border.width: DS.border.thin
                 
 //                 Behavior on color { ColorAnimation { duration: 150 } }
@@ -891,7 +891,7 @@
 //             background: Rectangle {
 //                 color: DS.color.surface.primary
 //                 radius: DS.radius.lg
-//                 border.color: DS.color.border.default
+//                 border.color: DS.color.border.base
 //                 border.width: DS.border.thin
 //             }
 //         }
@@ -1107,7 +1107,7 @@ ScrollView {
                     height: 28
                     color: addButtonArea.containsMouse ? DS.color.accent.primary : DS.color.surface.secondary
                     radius: DS.radius.sm
-                    border.color: DS.color.border.default
+                    border.color: DS.color.border.base
                     border.width: DS.border.thin
                     
                     Behavior on color { ColorAnimation { duration: 150 } }
@@ -1165,7 +1165,7 @@ ScrollView {
         height: 28
         color: DS.color.surface.secondary
         radius: DS.radius.sm
-        border.color: DS.color.border.default
+        border.color: DS.color.border.base
         border.width: DS.border.thin
         
         RowLayout {
@@ -1367,7 +1367,7 @@ ScrollView {
         background: Rectangle {
             color: DS.color.surface.primary
             radius: DS.radius.lg
-            border.color: DS.color.border.default
+            border.color: DS.color.border.base
             border.width: DS.border.thin
         }
     }

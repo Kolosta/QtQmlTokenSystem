@@ -1,5 +1,6 @@
 add_subdirectory(designsystem)
 add_subdirectory(keymap)
+add_subdirectory(core)
 
 set(APP_RESOURCES 
     ${CMAKE_SOURCE_DIR}/assets/assets.qrc 
@@ -16,9 +17,10 @@ target_link_libraries(DesignSystem PRIVATE
     Qt6::Quick
     Qt6::Qml
     Qt6::QuickControls2
-    Qt6::Gui 
+    Qt6::Gui
     DesignSystemLib
     KeymapLib
+    CoreLib
 )
 
 # --- CORRECTION POUR MINWG / QML STATIQUE ---

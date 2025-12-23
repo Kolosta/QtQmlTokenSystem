@@ -54,7 +54,7 @@ Rectangle {
                             height: 50
                             color: DS.color.surface.secondary
                             radius: DS.radius.md
-                            border.color: DS.color.border.default
+                            border.color: DS.color.border.base
                             border.width: DS.border.thin
                             
                             Text {
@@ -115,12 +115,11 @@ Rectangle {
                 Layout.fillWidth: true
             }
             
-            // TestDialog Section (complètement autonome)
-            TestDialog {}
+            // // TestDialog Section (complètement autonome)
+            // TestDialog {}
 
-            OSliderTest {}
-            
-            // Buttons Section
+            // OSliderTest {}
+
             GroupBox {
                 Layout.fillWidth: true
                 
@@ -132,7 +131,123 @@ Rectangle {
                 }
                 
                 label: Text {
-                    text: "Buttons"
+                    text: "Input Fields"
+                    font.pixelSize: 20
+                    font.weight: Font.DemiBold
+                    color: DS.color.text.primary
+                    leftPadding: DS.spacing.md
+                }
+                
+                ColumnLayout {
+                    width: parent.width
+                    spacing: DS.spacing.md
+                    
+                    // TestDialog Section (complètement autonome)
+                    TestDialog {}
+                }
+            }
+
+            GroupBox {
+                Layout.fillWidth: true
+                
+                background: Rectangle {
+                    color: DS.color.surface.primary
+                    radius: DS.radius.lg
+                    border.color: DS.color.border.subtle
+                    border.width: DS.border.thin
+                }
+                
+                label: Text {
+                    text: "Input Fields"
+                    font.pixelSize: 20
+                    font.weight: Font.DemiBold
+                    color: DS.color.text.primary
+                    leftPadding: DS.spacing.md
+                }
+                
+                ColumnLayout {
+                    width: parent.width
+                    spacing: DS.spacing.md
+                    
+                    OSliderTest {}
+                }
+            }
+            
+            // Buttons Section
+            // GroupBox {
+            //     Layout.fillWidth: true
+                
+            //     background: Rectangle {
+            //         color: DS.color.surface.primary
+            //         radius: DS.radius.lg
+            //         border.color: DS.color.border.subtle
+            //         border.width: DS.border.thin
+            //     }
+                
+            //     label: Text {
+            //         text: "Buttons"
+            //         font.pixelSize: 20
+            //         font.weight: Font.DemiBold
+            //         color: DS.color.text.primary
+            //         leftPadding: DS.spacing.md
+            //     }
+                
+            //     ColumnLayout {
+            //         width: parent.width
+            //         spacing: DS.spacing.md
+                    
+            //         RowLayout {
+            //             spacing: DS.spacing.md
+                        
+            //             CustomButton {
+            //                 text: "Primary Button"
+            //                 buttonType: "primary"
+            //             }
+                        
+            //             CustomButton {
+            //                 text: "Secondary Button"
+            //                 buttonType: "secondary"
+            //             }
+                        
+            //             CustomButton {
+            //                 text: "Disabled"
+            //                 enabled: false
+            //             }
+            //         }
+                    
+            //         RowLayout {
+            //             spacing: DS.spacing.md
+                        
+            //             CustomButton {
+            //                 text: "Success"
+            //                 buttonType: "success"
+            //             }
+                        
+            //             CustomButton {
+            //                 text: "Warning"
+            //                 buttonType: "warning"
+            //             }
+                        
+            //             CustomButton {
+            //                 text: "Error"
+            //                 buttonType: "error"
+            //             }
+            //         }
+            //     }
+            // }
+
+            GroupBox {
+                Layout.fillWidth: true
+                
+                background: Rectangle {
+                    color: DS.color.surface.primary
+                    radius: DS.radius.lg
+                    border.color: DS.color.border.subtle
+                    border.width: DS.border.thin
+                }
+                
+                label: Text {
+                    text: "Input Fields"
                     font.pixelSize: 20
                     font.weight: Font.DemiBold
                     color: DS.color.text.primary
@@ -316,7 +431,7 @@ Rectangle {
                         OIcon {
                             anchors.fill: parent
                             source: "qrc:/icons/chevron-down.svg"
-                            color: ThemeManager.textPrimary
+                            color: DS.color.text.primary
                         }
                     }
 
@@ -324,7 +439,7 @@ Rectangle {
                         Layout.preferredWidth: 20
                         Layout.preferredHeight: 20
                         source: "qrc:/icons/chevron-right.svg"
-                        color: ThemeManager.textPrimary
+                        color: DS.color.text.primary
                     }
 
 
@@ -341,7 +456,7 @@ Rectangle {
                                 icon.source: "qrc:/icons/settings.svg"
                                 icon.width: 10
                                 icon.height: 10
-                                icon.color: ThemeManager.textPrimary
+                                icon.color: DS.color.text.primary
                                 enabled: false
                             }
                         }

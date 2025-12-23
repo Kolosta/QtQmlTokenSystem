@@ -227,29 +227,59 @@ ApplicationWindow {
     contentItem.transformOrigin: Item.TopLeft
     contentItem.width: root.width / ScaleManager.scaleFactor
     contentItem.height: root.height / ScaleManager.scaleFactor
-    
-    // Dynamic shortcuts that update when keymaps change
-    Repeater {
-        model: ListModel {
-            id: shortcutsModel
-            
-            function refresh() {
-                clear()
-                append({ actionId: "file.quit", handler: function() { Qt.quit() } })
-                append({ actionId: "edit.preferences", handler: function() { preferencesWindow.show() } })
-                append({ actionId: "view.increase_scale", handler: function() { ScaleManager.increaseScale() } })
-                append({ actionId: "view.decrease_scale", handler: function() { ScaleManager.decreaseScale() } })
-                append({ actionId: "view.reset_scale", handler: function() { ScaleManager.resetScale() } })
-            }
-            
-            Component.onCompleted: refresh()
+
+    // ============================================================
+    // DYNAMIC SHORTCUTS (CORRECT IMPLEMENTATION)
+    // ============================================================
+
+    ListModel {
+        id: shortcutsModel
+
+        function refresh() {
+            clear()
+            append({ actionId: "file.quit", handler: function() { Qt.quit() } })
+            append({ actionId: "edit.preferences", handler: function() { preferencesWindow.show() } })
+            append({ actionId: "view.increase_scale", handler: function() { ScaleManager.increaseScale() } })
+            append({ actionId: "view.decrease_scale", handler: function() { ScaleManager.decreaseScale() } })
+            append({ actionId: "view.reset_scale", handler: function() { ScaleManager.resetScale() } })
         }
-        
-        Shortcut {
-            sequences: KeymapManager.getAllShortcuts(modelData.actionId)
-            onActivated: modelData.handler()
+
+        Component.onCompleted: refresh()
+    }
+
+    Instantiator {
+        id: shortcutsInstantiator
+        model: shortcutsModel
+
+        delegate: Shortcut {
+            sequences: KeymapManager.getAllShortcuts(model.actionId)
+            onActivated: model.handler()
         }
     }
+    
+    // Dynamic shortcuts that update when keymaps change
+    // Repeater {
+    //     model: ListModel {
+    //         id: shortcutsModel
+            
+    //         function refresh() {
+    //             clear()
+    //             append({ actionId: "file.quit", handler: function() { Qt.quit() } })
+    //             append({ actionId: "edit.preferences", handler: function() { preferencesWindow.show() } })
+    //             append({ actionId: "view.increase_scale", handler: function() { ScaleManager.increaseScale() } })
+    //             append({ actionId: "view.decrease_scale", handler: function() { ScaleManager.decreaseScale() } })
+    //             append({ actionId: "view.reset_scale", handler: function() { ScaleManager.resetScale() } })
+    //         }
+            
+    //         Component.onCompleted: refresh()
+    //     }
+        
+    //     Shortcut {
+    //         sequences: KeymapManager.getAllShortcuts(modelData.actionId)
+    //         onActivated: modelData.handler()
+    //     }
+    // }
+    
     
     // Update shortcuts when keymaps change
     Connections {
@@ -258,13 +288,20 @@ ApplicationWindow {
             shortcutsModel.refresh()
         }
     }
+
+    // ============================================================
+    // PREFERENCES WINDOW
+    // ============================================================
     
     // Preferences Window
     PreferencesWindow {
         id: preferencesWindow
     }
+
+    // ============================================================
+    // MAIN CONTENT
+    // ============================================================
     
-    // Main content
     ColumnLayout {
         anchors.fill: parent
         spacing: 0

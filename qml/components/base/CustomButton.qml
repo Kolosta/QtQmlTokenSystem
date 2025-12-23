@@ -80,7 +80,7 @@ Button {
         }
         
         if (buttonType === "secondary") {
-            return control.hovered ? DS.color.accent.primary : DS.color.border.default
+            return control.hovered ? DS.color.accent.primary : DS.color.border.base
         }
         
         return DS.color.border.strong

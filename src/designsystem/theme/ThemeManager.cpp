@@ -68,7 +68,7 @@ void ThemeManager::initializeArcticTheme() {
     m_arcticMap[TokenPath("color.text.inverse")] = TokenPath("primitive.color.neutral.0");
     
     // === BORDER - Bordures subtiles bleutées ===
-    m_arcticMap[TokenPath("color.border.default")] = TokenPath("primitive.color.blue.300");
+    m_arcticMap[TokenPath("color.border.base")] = TokenPath("primitive.color.blue.300");
     m_arcticMap[TokenPath("color.border.subtle")] = TokenPath("primitive.color.blue.200");
     m_arcticMap[TokenPath("color.border.strong")] = TokenPath("primitive.color.blue.400");
     
@@ -103,7 +103,7 @@ void ThemeManager::initializeMutedGreenTheme() {
     m_mutedGreenMap[TokenPath("color.text.inverse")] = TokenPath("primitive.color.green.900");
     
     // === BORDER - Bordures vertes désaturées ===
-    m_mutedGreenMap[TokenPath("color.border.default")] = TokenPath("primitive.color.green.700");
+    m_mutedGreenMap[TokenPath("color.border.base")] = TokenPath("primitive.color.green.700");
     m_mutedGreenMap[TokenPath("color.border.subtle")] = TokenPath("primitive.color.green.800");
     m_mutedGreenMap[TokenPath("color.border.strong")] = TokenPath("primitive.color.green.600");
     

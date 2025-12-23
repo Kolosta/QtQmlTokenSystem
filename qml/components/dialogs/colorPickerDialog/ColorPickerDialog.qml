@@ -237,7 +237,9 @@ ODialog {
     // ============================================================
     
     Item {
-        width: parent.width
+        // width: parent.width
+        width: root.dialogWidth
+        // Layout.fillWidth: true --> Fonctionne pas
         height: mainLayout.implicitHeight + (DS.spacing.lg * 2)
         
         ColumnLayout {

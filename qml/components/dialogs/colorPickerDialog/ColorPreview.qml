@@ -9,13 +9,13 @@ Rectangle {
     id: root
     
     radius: DS.radius.md
-    border.color: DS.color.border.default_
+    border.color: DS.color.border.base
     border.width: DS.border.thin
     
     // Transition douce lors du changement de couleur
-    Behavior on color {
-        ColorAnimation {
-            duration: 100
-        }
-    }
+    // Behavior on color {
+    //     ColorAnimation {
+    //         duration: 100
+    //     }
+    // }
 }

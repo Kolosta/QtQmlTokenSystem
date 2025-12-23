@@ -38,7 +38,7 @@ Item {
     Rectangle {
         anchors.fill: parent
         radius: DS.radius.sm
-        border.color: DS.color.border.default_
+        border.color: DS.color.border.base
         border.width: 1
         
         gradient: Gradient {
@@ -53,8 +53,10 @@ Item {
     
     Rectangle {
         x: -2
-        y: parent.height * (1 - root.sliderValue) - height / 2
-        width: parent.width + 4
+        // y: parent.height * (1 - root.sliderValue) - height / 2
+        // width: parent.width + 4
+        y: root.height * (1 - root.sliderValue) - height / 2 //TODO : oui ou non ? Les deux fonctionnent
+        width: root.width + 4
         height: 6
         color: "white"
         radius: 3

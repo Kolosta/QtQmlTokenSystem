@@ -14,7 +14,7 @@ Rectangle {
     
     // Cached token values - updated when context changes
     property var bgColor: getTokenValue("color.background.primary")
-    property var borderColorValue: getTokenValue("color.border.default")
+    property var borderColorValue: getTokenValue("color.border.base")
     property var accentColor: getTokenValue("color.accent.primary")
     property var radiusValue: getTokenValue("radius.lg")
     property var surfaceColor: getTokenValue("color.surface.primary")
@@ -56,7 +56,7 @@ Rectangle {
     
     function refreshAllTokens() {
         bgColor = getTokenValue("color.background.primary")
-        borderColorValue = getTokenValue("color.border.default")
+        borderColorValue = getTokenValue("color.border.base")
         accentColor = getTokenValue("color.accent.primary")
         radiusValue = getTokenValue("radius.lg")
         surfaceColor = getTokenValue("color.surface.primary")

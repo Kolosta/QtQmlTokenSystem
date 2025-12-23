@@ -4,27 +4,21 @@ import QtQuick.Layouts
 
 /**
  * OSliderTest - Composant de test pour OSlider
- * 
- * Teste les deux modes :
- * - Mode classique (0-255)
- * - Mode normalisé (0-1)
  */
 Rectangle {
     id: root
     
-    width: 600
-    height: 400
+    width: 700
+    implicitHeight: mainColumn.implicitHeight + DS.spacing.lg * 2
     color: DS.color.background.primary
     
     ColumnLayout {
+        id: mainColumn
         anchors.fill: parent
         anchors.margins: DS.spacing.lg
         spacing: DS.spacing.xl
         
-        // ============================================================
-        // TITRE
-        // ============================================================
-        
+        // Titre
         Text {
             text: "OSlider Test Component"
             font.pixelSize: 24
@@ -52,6 +46,12 @@ Rectangle {
                 Layout.fillWidth: true
                 spacing: DS.spacing.md
                 
+                Text {
+                    text: "Valeur:"
+                    color: DS.color.text.secondary
+                    Layout.preferredWidth: 60
+                }
+                
                 OSlider {
                     id: classicSlider
                     Layout.fillWidth: true
@@ -59,27 +59,30 @@ Rectangle {
                     to: 255
                     value: 128
                     stepSize: 1
+                    dragStepSize: 1
                     decimals: 0
-                    normalizedMode: false
+                    shiftMultiplier: 0.01
                     
-                    onMoved: {
-                        console.log("Classic slider value:", value)
+                    onValueChanged: {
+                        console.log("Classic slider:", value)
                     }
+                    
                 }
                 
                 Rectangle {
-                    Layout.preferredWidth: 100
+                    Layout.preferredWidth: 80
                     Layout.preferredHeight: 44
                     color: DS.color.surface.secondary
                     radius: DS.radius.md
-                    border.color: DS.color.border.default_
+                    border.color: DS.color.border.base
                     border.width: DS.border.thin
                     
                     Text {
                         anchors.centerIn: parent
-                        text: Math.round(classicSlider.value)
+                        text: Math.round(classicSlider.value).toString()
+                        // text: classicSlider.value
                         color: DS.color.text.primary
-                        font.pixelSize: 18
+                        font.pixelSize: 16
                         font.bold: true
                         font.family: "monospace"
                     }
@@ -87,11 +90,12 @@ Rectangle {
             }
             
             Text {
-                text: "Interactions: Clic sans drag = input | Clic+drag = drag | Shift+drag = vitesse ÷10 | Clic droit/Échap = annuler"
+                text: "• stepSize: 1 | dragStepSize: 1\n• Boutons < > : ±1 | Drag normal : continu | Shift+drag : continu ÷10"
                 font.pixelSize: 10
                 color: DS.color.text.secondary
                 wrapMode: Text.WordWrap
                 Layout.fillWidth: true
+                lineHeight: 1.3
             }
         }
         
@@ -104,7 +108,7 @@ Rectangle {
             spacing: DS.spacing.sm
             
             Text {
-                text: "Mode Normalisé (0.0 - 1.0 avec indicateur)"
+                text: "Mode Normalisé (0.0 - 1.0)"
                 font.pixelSize: 16
                 font.bold: true
                 color: DS.color.text.primary
@@ -113,6 +117,12 @@ Rectangle {
             RowLayout {
                 Layout.fillWidth: true
                 spacing: DS.spacing.md
+                
+                Text {
+                    text: "Valeur:"
+                    color: DS.color.text.secondary
+                    Layout.preferredWidth: 60
+                }
                 
                 OSlider {
                     id: normalizedSlider
@@ -125,24 +135,28 @@ Rectangle {
                     decimals: 3
                     normalizedMode: true
                     
-                    onMoved: {
-                        console.log("Normalized slider value:", value)
+                    onValueChanged: {
+                        console.log("Normalized slider:", value.toFixed(3))
                     }
+                    
+                    // onCursorRepositionRequested: (x, y) => {
+                    //     CursorHelper.setCursorPosition(x, y)
+                    // }
                 }
                 
                 Rectangle {
-                    Layout.preferredWidth: 100
+                    Layout.preferredWidth: 80
                     Layout.preferredHeight: 44
                     color: DS.color.surface.secondary
                     radius: DS.radius.md
-                    border.color: DS.color.border.default_
+                    border.color: DS.color.border.base
                     border.width: DS.border.thin
                     
                     Text {
                         anchors.centerIn: parent
                         text: normalizedSlider.value.toFixed(3)
                         color: DS.color.text.primary
-                        font.pixelSize: 18
+                        font.pixelSize: 16
                         font.bold: true
                         font.family: "monospace"
                     }
@@ -150,42 +164,122 @@ Rectangle {
             }
             
             Text {
-                text: "Note: L'indicateur bleu montre la valeur de 0% (gauche) à 100% (droite)"
+                text: "• stepSize: 0.01 | dragStepSize: 0.001 (pas utilisé, drag continu)\n• Indicateur bleu : 0% (gauche) → 100% (droite)\n• Réapparition curseur : sur la séparation bleue"
                 font.pixelSize: 10
                 color: DS.color.text.secondary
                 wrapMode: Text.WordWrap
                 Layout.fillWidth: true
+                lineHeight: 1.3
             }
         }
         
         // ============================================================
-        // INSTRUCTIONS
+        // INSTRUCTIONS DÉTAILLÉES
         // ============================================================
         
         Rectangle {
             Layout.fillWidth: true
-            Layout.preferredHeight: instructionsText.implicitHeight + DS.spacing.md * 2
+            Layout.preferredHeight: instructionsColumn.implicitHeight + DS.spacing.md * 2
             color: DS.color.surface.secondary
             radius: DS.radius.md
-            border.color: DS.color.border.default_
+            border.color: DS.color.border.base
             border.width: DS.border.thin
             
-            Text {
-                id: instructionsText
+            ColumnLayout {
+                id: instructionsColumn
                 anchors.fill: parent
                 anchors.margins: DS.spacing.md
-                text: "📌 Instructions de test:\n" +
-                      "• Boutons < > : incrémenter/décrémenter\n" +
-                      "• Clic rapide au centre : mode input (entrer valeur manuellement)\n" +
-                      "• Clic + drag horizontal : mode drag (souris disparaît)\n" +
-                      "• Shift pendant drag : vitesse réduite ×10\n" +
-                      "• Clic droit ou Échap : annuler l'action en cours\n" +
-                      "• Enter/Return en mode input : valider\n" +
-                      "• Suppr/Échap en mode input : annuler"
-                color: DS.color.text.primary
-                font.pixelSize: 12
-                wrapMode: Text.WordWrap
-                lineHeight: 1.4
+                spacing: DS.spacing.xs
+                
+                Text {
+                    text: "📌 Guide d'utilisation"
+                    font.pixelSize: 14
+                    font.bold: true
+                    color: DS.color.text.primary
+                }
+                
+                Text {
+                    text: "Boutons < > :"
+                    font.pixelSize: 12
+                    font.bold: true
+                    color: DS.color.text.primary
+                    topPadding: DS.spacing.xs
+                }
+                Text {
+                    text: "  • Incrémenter/décrémenter par stepSize (1 ou 0.01 selon le mode)"
+                    font.pixelSize: 11
+                    color: DS.color.text.secondary
+                }
+                
+                Text {
+                    text: "Mode Input (clic rapide sans drag) :"
+                    font.pixelSize: 12
+                    font.bold: true
+                    color: DS.color.text.primary
+                    topPadding: DS.spacing.xs
+                }
+                Text {
+                    text: "  • Entrer une valeur manuellement\n  • Enter/Return : valider\n  • Échap/Suppr : annuler\n  • Clic gauche extérieur : valider\n  • Clic droit extérieur : annuler"
+                    font.pixelSize: 11
+                    color: DS.color.text.secondary
+                    lineHeight: 1.3
+                }
+                
+                Text {
+                    text: "Mode Drag (clic + mouvement > 5px) :"
+                    font.pixelSize: 12
+                    font.bold: true
+                    color: DS.color.text.primary
+                    topPadding: DS.spacing.xs
+                }
+                Text {
+                    text: "  • ✅ Détection immédiate dès le premier mouvement\n  • ✅ Curseur invisible, mouvements relatifs de la souris\n  • ✅ Drag horizontal : change la valeur continuellement\n  • ✅ Shift pendant drag : vitesse réduite ×10\n  • ✅ La souris peut sortir de la zone, elle reste invisible\n  • ✅ Mouvements accumulés même au-delà des limites\n  • ✅ Clic droit ou Échap : annuler et restaurer\n  • ✅ Relâcher : valider et curseur réapparaît (même si on a dragué)"
+                    font.pixelSize: 11
+                    color: DS.color.text.secondary
+                    lineHeight: 1.3
+                }
+                
+                Text {
+                    text: "⚙️ CursorHelper avancé (C++)"
+                    font.pixelSize: 12
+                    font.bold: true
+                    color: DS.color.status.info
+                    topPadding: DS.spacing.xs
+                }
+                Text {
+                    text: "Le nouveau CursorHelper gère automatiquement :\n" +
+                          "  • 🔄 Wraparound : quand le curseur atteint un bord de l'écran,\n" +
+                          "    il réapparaît de l'autre côté (comme dans les jeux 3D)\n" +
+                          "  • 🎯 Drag infini : plus de blocage aux bords de l'écran\n" +
+                          "  • 👁️ Curseur toujours invisible pendant le drag\n\n" +
+                          "Fonctions principales :\n" +
+                          "  • startDragMode(x, y) : active le wraparound automatique\n" +
+                          "  • stopDragMode() : désactive le wraparound\n" +
+                          "  • setCursorPosition(x, y) : repositionne le curseur\n" +
+                          "  • Signal cursorWrapped(dx, dy) : émis lors d'un wraparound"
+                    font.pixelSize: 10
+                    color: DS.color.text.secondary
+                    lineHeight: 1.3
+                }
+                
+                Text {
+                    text: "⚠️ Installation requise"
+                    font.pixelSize: 12
+                    font.bold: true
+                    color: DS.color.status.warning
+                    topPadding: DS.spacing.xs
+                }
+                Text {
+                    text: "Pour activer toutes les fonctionnalités :\n" +
+                          "1. Ajouter CursorHelper.h/.cpp à votre projet\n" +
+                          "2. Exposer en C++ : engine.rootContext()->setContextProperty(\"CursorHelper\", cursorHelper)\n" +
+                          "3. Le code QML détecte automatiquement si CursorHelper est disponible\n\n" +
+                          "✅ Avec CursorHelper : wraparound + repositionnement parfait\n" +
+                          "⚠️ Sans CursorHelper : fonctionne mais sans wraparound (curseur peut bloquer aux bords)"
+                    font.pixelSize: 10
+                    color: DS.color.text.secondary
+                    lineHeight: 1.3
+                }
             }
         }
         

@@ -11,6 +11,7 @@
 #include "designsystem/exposer/DesignSystemRoot.h"
 #include "designsystem/scaling/ScaleManager.h"
 #include "keymap/KeymapManager.h"
+#include "core/helpers/CursorHelper.h"
 
 int main(int argc, char *argv[]) {
     QGuiApplication app(argc, argv);
@@ -46,6 +47,11 @@ int main(int argc, char *argv[]) {
     auto* keymapManager = DS::KeymapManager::instance();
 
 
+    // CursorHelper cursorHelper;
+    CursorHelper* cursorHelper = new CursorHelper(&app);
+    // auto* cursorHelper = DS::CursorHelper::instance();
+
+
     QQuickStyle::setStyle("Basic");
     app.setWindowIcon(QIcon(":/icons/app_icon.svg"));
     
@@ -55,6 +61,8 @@ int main(int argc, char *argv[]) {
     engine.rootContext()->setContextProperty("DS", designSystemRoot);
     engine.rootContext()->setContextProperty("ScaleManager", scaleManager);
     engine.rootContext()->setContextProperty("KeymapManager", keymapManager);
+    // engine.rootContext()->setContextProperty("CursorHelper", &cursorHelper);
+    engine.rootContext()->setContextProperty("CursorHelper", cursorHelper);
 
     // Register TokenInspector singleton
     // qmlRegisterSingletonType<TokenInspector>(

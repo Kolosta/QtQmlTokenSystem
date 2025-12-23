@@ -170,7 +170,7 @@ ScrollView {
                         
                         TokenCard {
                             Layout.fillWidth: true
-                            tokenPath: "color.border.default"
+                            tokenPath: "color.border.base"
                             tokenName: "Border Default"
                         }
                         

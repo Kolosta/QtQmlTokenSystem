@@ -117,7 +117,7 @@ Rectangle {
                 background: Rectangle {
                     color: DS.color.surface.secondary
                     radius: DS.radius.sm
-                    border.color: DS.color.border.default_
+                    border.color: DS.color.border.base
                     border.width: DS.border.thin
                 }
                 

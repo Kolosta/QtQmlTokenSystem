@@ -39,7 +39,7 @@
 // //             return DS.color.border.strong
 // //         }
         
-// //         return DS.color.border.default_
+// //         return DS.color.border.base
 // //     }
 // // }
 
@@ -103,7 +103,7 @@
 //             return DS.color.border.strong
 //         }
         
-//         return DS.color.border.default_
+//         return DS.color.border.base
 //     }
     
 //     // ============================================================
@@ -279,7 +279,7 @@ TextField {
             return DS.color.border.strong
         }
         
-        return DS.color.border.default_
+        return DS.color.border.base
     }
     
     // ============================================================

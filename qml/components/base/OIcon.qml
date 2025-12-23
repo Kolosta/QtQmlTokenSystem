@@ -30,6 +30,11 @@ Item {
     Button {
         id: iconButton
         anchors.fill: parent
+        padding: 0
+        leftPadding: 0
+        rightPadding: 0
+        topPadding: 0
+        bottomPadding: 0
 
         enabled: false
         focusPolicy: Qt.NoFocus
