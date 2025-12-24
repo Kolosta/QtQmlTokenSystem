@@ -17,6 +17,7 @@ qt_add_qml_module(QmlModule
         components/base/OSlider.qml
         components/base/OIcon.qml
         components/base/IconButton.qml
+        components/base/OScrollView.qml
 
         # Dialog Components
         # components/dialogs/ColorPickerDialog.qml

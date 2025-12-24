@@ -6,14 +6,17 @@ Rectangle {
     id: root
     color: DS.color.background.primary
     
-    ScrollView {
+    OScrollView {
+        id: mainScrollView
         anchors.fill: parent
-        contentWidth: availableWidth
         
         ColumnLayout {
-            width: parent.width - DS.spacing.md * 2
+            // width: parent.width - DS.spacing.md * 2
+            // spacing: DS.spacing.xl
+            // anchors.margins: DS.spacing.lg
+            width: parent.width - DS.spacing.md * 2 
+            x: DS.spacing.md
             spacing: DS.spacing.xl
-            anchors.margins: DS.spacing.lg
             
             // Scale Control Section
             GroupBox {

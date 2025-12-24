@@ -906,7 +906,7 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 
-ScrollView {
+OScrollView {
     id: root
     contentWidth: availableWidth
     

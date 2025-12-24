@@ -189,7 +189,7 @@ ColumnLayout {
     }
     
     // Token list
-    ScrollView {
+    OScrollView {
         Layout.fillWidth: true
         Layout.fillHeight: true
         contentWidth: availableWidth
