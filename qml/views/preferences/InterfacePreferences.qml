@@ -4,7 +4,9 @@ import QtQuick.Layouts
 
 OScrollView {
     id: root
-    contentWidth: availableWidth
+    // contentWidth: availableWidth
+    // anchors.fill: parent
+    Layout.fillWidth: true
     
     ColumnLayout {
         width: parent.width

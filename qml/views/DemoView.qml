@@ -175,69 +175,6 @@ Rectangle {
                     OSliderTest {}
                 }
             }
-            
-            // Buttons Section
-            // GroupBox {
-            //     Layout.fillWidth: true
-                
-            //     background: Rectangle {
-            //         color: DS.color.surface.primary
-            //         radius: DS.radius.lg
-            //         border.color: DS.color.border.subtle
-            //         border.width: DS.border.thin
-            //     }
-                
-            //     label: Text {
-            //         text: "Buttons"
-            //         font.pixelSize: 20
-            //         font.weight: Font.DemiBold
-            //         color: DS.color.text.primary
-            //         leftPadding: DS.spacing.md
-            //     }
-                
-            //     ColumnLayout {
-            //         width: parent.width
-            //         spacing: DS.spacing.md
-                    
-            //         RowLayout {
-            //             spacing: DS.spacing.md
-                        
-            //             CustomButton {
-            //                 text: "Primary Button"
-            //                 buttonType: "primary"
-            //             }
-                        
-            //             CustomButton {
-            //                 text: "Secondary Button"
-            //                 buttonType: "secondary"
-            //             }
-                        
-            //             CustomButton {
-            //                 text: "Disabled"
-            //                 enabled: false
-            //             }
-            //         }
-                    
-            //         RowLayout {
-            //             spacing: DS.spacing.md
-                        
-            //             CustomButton {
-            //                 text: "Success"
-            //                 buttonType: "success"
-            //             }
-                        
-            //             CustomButton {
-            //                 text: "Warning"
-            //                 buttonType: "warning"
-            //             }
-                        
-            //             CustomButton {
-            //                 text: "Error"
-            //                 buttonType: "error"
-            //             }
-            //         }
-            //     }
-            // }
 
             GroupBox {
                 Layout.fillWidth: true

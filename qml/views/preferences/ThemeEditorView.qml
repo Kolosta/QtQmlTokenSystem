@@ -4,7 +4,9 @@ import QtQuick.Layouts
 
 OScrollView {
     id: root
-    contentWidth: availableWidth
+    // contentWidth: availableWidth
+    // anchors.fill: parent
+    Layout.fillWidth: true
     
     ColumnLayout {
         width: parent.width
@@ -321,6 +323,98 @@ OScrollView {
                     tokenPath: "radius.lg"
                     tokenName: "Radius LG"
                     tokenType: "radius"
+                }
+            }
+        }
+
+        // COMPONENTS SECTION
+        Section {
+            Layout.fillWidth: true
+            title: "Components"
+            
+            // MenuBar component Subsection
+            Subsection {
+                Layout.fillWidth: true
+                title: "Menu Bar"
+                
+                ColumnLayout {
+                    Layout.fillWidth: true
+                    spacing: DS.spacing.sm
+                    
+                    TokenCard {
+                        Layout.fillWidth: true
+                        tokenPath: "component.menubar.height"
+                        tokenName: "MenuBar Height"
+                        tokenType: "spacing"
+                    }
+                }
+            }
+
+            // CustomButton component Subsection
+            Subsection {
+                Layout.fillWidth: true
+                title: "Buttons"
+                
+                ColumnLayout {
+                    Layout.fillWidth: true
+                    spacing: DS.spacing.sm
+                    
+                    TokenCard {
+                        Layout.fillWidth: true
+                        tokenPath: "component.button.borderWidth"
+                        tokenName: "Button Border Width"
+                        tokenType: "spacing"
+                    }
+                    
+                    TokenCard {
+                        Layout.fillWidth: true
+                        tokenPath: "component.button.radius"
+                        tokenName: "Button Radius"
+                        tokenType: "radius"
+                    }
+                }
+            }
+
+            // CustomButton component Subsection
+            Subsection {
+                Layout.fillWidth: true
+                title: "Icon Buttons"
+                
+                ColumnLayout {
+                    Layout.fillWidth: true
+                    spacing: DS.spacing.sm
+                    
+                    TokenCard {
+                        Layout.fillWidth: true
+                        tokenPath: "component.iconButton.radius"
+                        tokenName: "Icon Button radius"
+                        tokenType: "radius"
+                    }
+                }
+            }
+
+            // Card component Subsection
+            Subsection {
+                Layout.fillWidth: true
+                title: "Icon Buttons"
+                
+                ColumnLayout {
+                    Layout.fillWidth: true
+                    spacing: DS.spacing.sm
+                    
+                    TokenCard {
+                        Layout.fillWidth: true
+                        tokenPath: "component.card.padding"
+                        tokenName: "Card Padding"
+                        tokenType: "spacing"
+                    }
+                    
+                    TokenCard {
+                        Layout.fillWidth: true
+                        tokenPath: "component.card.gap"
+                        tokenName: "Card Gap"
+                        tokenType: "spacing"
+                    }
                 }
             }
         }

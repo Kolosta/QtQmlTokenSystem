@@ -18,6 +18,12 @@ qt_add_qml_module(QmlModule
         components/base/OIcon.qml
         components/base/IconButton.qml
         components/base/OScrollView.qml
+        components/base/OShortcutPreview.qml
+        # Base Components buttons
+        components/base/buttons/OButton.qml
+        components/base/buttons/OButtonGroup.qml
+        # Base Components inputs
+        components/base/inputs/OShortcutInput.qml
 
         # Dialog Components
         # components/dialogs/ColorPickerDialog.qml
@@ -47,7 +53,7 @@ qt_add_qml_module(QmlModule
         # editor/ContextControls.qml
         editor/ThemeControls.qml
         editor/TokenCard.qml
-        editor/TokenEditor.qml
+        # editor/TokenEditor.qml
         editor/ThemePreviewCard.qml
 
         # Demo
@@ -59,4 +65,5 @@ target_link_libraries(QmlModule PRIVATE
     Qt6::Quick
     Qt6::QuickControls2
     Qt6::Qml
+    # Qt6::QuickShapes
 )

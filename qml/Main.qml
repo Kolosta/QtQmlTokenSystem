@@ -1,3 +1,58 @@
+// // // // import QtQuick
+// // // // import QtQuick.Controls
+// // // // import QtQuick.Layouts
+
+// // // // ApplicationWindow {
+// // // //     id: root
+// // // //     width: 1600
+// // // //     height: 900
+// // // //     visible: true
+// // // //     visibility: Window.Maximized
+// // // //     title: "Design System Demo - Qt 6.8.3"
+    
+// // // //     color: DS.color.background.primary
+
+// // // //     // Scaling automatique
+// // // //     // contentItem.scale: ScaleManager.scaleFactor
+// // // //     // contentItem.transformOrigin: Item.TopLeft
+// // // //     // contentItem.width: root.width / ScaleManager.scaleFactor
+// // // //     // contentItem.height: root.height / ScaleManager.scaleFactor
+    
+// // // //     SplitView {
+// // // //         anchors.fill: parent
+// // // //         orientation: Qt.Horizontal
+        
+// // // //         // Left side - Component Demo
+// // // //         Rectangle {
+// // // //             SplitView.fillHeight: true
+// // // //             SplitView.preferredWidth: parent.width * 0.5
+// // // //             SplitView.minimumWidth: 400
+            
+// // // //             color: DS.color.background.primary
+            
+// // // //             DemoArea {
+// // // //                 anchors.fill: parent
+// // // //                 anchors.margins: DS.spacing.lg
+// // // //             }
+// // // //         }
+        
+// // // //         // Right side - Token Editor
+// // // //         Rectangle {
+// // // //             SplitView.fillHeight: true
+// // // //             SplitView.fillWidth: true
+// // // //             SplitView.minimumWidth: 600
+            
+// // // //             color: DS.color.background.secondary
+            
+// // // //             TokenEditor {
+// // // //                 anchors.fill: parent
+// // // //                 anchors.margins: DS.spacing.lg
+// // // //             }
+// // // //         }
+// // // //     }
+// // // // }
+
+
 // // // import QtQuick
 // // // import QtQuick.Controls
 // // // import QtQuick.Layouts
@@ -11,46 +66,74 @@
 // // //     title: "Design System Demo - Qt 6.8.3"
     
 // // //     color: DS.color.background.primary
-
-// // //     // Scaling automatique
-// // //     // contentItem.scale: ScaleManager.scaleFactor
-// // //     // contentItem.transformOrigin: Item.TopLeft
-// // //     // contentItem.width: root.width / ScaleManager.scaleFactor
-// // //     // contentItem.height: root.height / ScaleManager.scaleFactor
     
-// // //     SplitView {
+// // //     // Keyboard shortcuts
+// // //     Shortcut {
+// // //         sequence: KeymapManager.getShortcut("file.quit")
+// // //         onActivated: Qt.quit()
+// // //     }
+    
+// // //     Shortcut {
+// // //         sequence: KeymapManager.getShortcut("edit.preferences")
+// // //         onActivated: preferencesWindow.show()
+// // //     }
+    
+// // //     Shortcut {
+// // //         sequence: KeymapManager.getShortcut("view.increase_scale")
+// // //         onActivated: ScaleManager.increaseScale()
+// // //     }
+    
+// // //     Shortcut {
+// // //         sequence: KeymapManager.getShortcut("view.decrease_scale")
+// // //         onActivated: ScaleManager.decreaseScale()
+// // //     }
+    
+// // //     Shortcut {
+// // //         sequence: KeymapManager.getShortcut("view.reset_scale")
+// // //         onActivated: ScaleManager.resetScale()
+// // //     }
+    
+// // //     // Preferences Window
+// // //     PreferencesWindow {
+// // //         id: preferencesWindow
+// // //     }
+    
+// // //     // Main content with automatic scaling
+// // //     Item {
 // // //         anchors.fill: parent
-// // //         orientation: Qt.Horizontal
         
-// // //         // Left side - Component Demo
-// // //         Rectangle {
-// // //             SplitView.fillHeight: true
-// // //             SplitView.preferredWidth: parent.width * 0.5
-// // //             SplitView.minimumWidth: 400
-            
-// // //             color: DS.color.background.primary
-            
-// // //             DemoArea {
-// // //                 anchors.fill: parent
-// // //                 anchors.margins: DS.spacing.lg
-// // //             }
+// // //         // Apply global scale using transform
+// // //         transform: Scale {
+// // //             xScale: ScaleManager.scaleFactor
+// // //             yScale: ScaleManager.scaleFactor
+// // //             origin.x: 0
+// // //             origin.y: 0
 // // //         }
         
-// // //         // Right side - Token Editor
-// // //         Rectangle {
-// // //             SplitView.fillHeight: true
-// // //             SplitView.fillWidth: true
-// // //             SplitView.minimumWidth: 600
+// // //         // Adjust size to compensate for scaling
+// // //         width: parent.width / ScaleManager.scaleFactor
+// // //         height: parent.height / ScaleManager.scaleFactor
+        
+// // //         ColumnLayout {
+// // //             anchors.fill: parent
+// // //             spacing: 0
             
-// // //             color: DS.color.background.secondary
+// // //             // Menu Bar
+// // //             CustomMenuBar {
+// // //                 Layout.fillWidth: true
+                
+// // //                 onPreferencesRequested: preferencesWindow.show()
+// // //             }
             
-// // //             TokenEditor {
-// // //                 anchors.fill: parent
-// // //                 anchors.margins: DS.spacing.lg
+// // //             // Main content area
+// // //             DemoView {
+// // //                 Layout.fillWidth: true
+// // //                 Layout.fillHeight: true
 // // //             }
 // // //         }
 // // //     }
 // // // }
+
 
 
 // // import QtQuick
@@ -66,6 +149,12 @@
 // //     title: "Design System Demo - Qt 6.8.3"
     
 // //     color: DS.color.background.primary
+    
+// //     // Apply responsive scaling to contentItem
+// //     contentItem.scale: ScaleManager.scaleFactor
+// //     contentItem.transformOrigin: Item.TopLeft
+// //     contentItem.width: root.width / ScaleManager.scaleFactor
+// //     contentItem.height: root.height / ScaleManager.scaleFactor
     
 // //     // Keyboard shortcuts
 // //     Shortcut {
@@ -98,41 +187,140 @@
 // //         id: preferencesWindow
 // //     }
     
-// //     // Main content with automatic scaling
-// //     Item {
+// //     // Main content
+// //     ColumnLayout {
 // //         anchors.fill: parent
+// //         spacing: 0
         
-// //         // Apply global scale using transform
-// //         transform: Scale {
-// //             xScale: ScaleManager.scaleFactor
-// //             yScale: ScaleManager.scaleFactor
-// //             origin.x: 0
-// //             origin.y: 0
+// //         // Menu Bar
+// //         CustomMenuBar {
+// //             Layout.fillWidth: true
+            
+// //             onPreferencesRequested: preferencesWindow.show()
 // //         }
         
-// //         // Adjust size to compensate for scaling
-// //         width: parent.width / ScaleManager.scaleFactor
-// //         height: parent.height / ScaleManager.scaleFactor
-        
-// //         ColumnLayout {
-// //             anchors.fill: parent
-// //             spacing: 0
-            
-// //             // Menu Bar
-// //             CustomMenuBar {
-// //                 Layout.fillWidth: true
-                
-// //                 onPreferencesRequested: preferencesWindow.show()
-// //             }
-            
-// //             // Main content area
-// //             DemoView {
-// //                 Layout.fillWidth: true
-// //                 Layout.fillHeight: true
-// //             }
+// //         // Main content area
+// //         DemoView {
+// //             Layout.fillWidth: true
+// //             Layout.fillHeight: true
 // //         }
 // //     }
 // // }
+
+
+// import QtQuick
+// import QtQuick.Controls
+// import QtQuick.Layouts
+
+// ApplicationWindow {
+//     id: root
+//     width: 1600
+//     height: 900
+//     visible: true
+//     visibility: Window.Maximized
+//     title: "Design System Demo - Qt 6.8.3"
+    
+//     color: DS.color.background.primary
+    
+//     // Apply responsive scaling to contentItem
+//     contentItem.scale: ScaleManager.scaleFactor
+//     contentItem.transformOrigin: Item.TopLeft
+//     contentItem.width: root.width / ScaleManager.scaleFactor
+//     contentItem.height: root.height / ScaleManager.scaleFactor
+
+//     // ============================================================
+//     // DYNAMIC SHORTCUTS (CORRECT IMPLEMENTATION)
+//     // ============================================================
+
+//     ListModel {
+//         id: shortcutsModel
+
+//         function refresh() {
+//             clear()
+//             append({ actionId: "file.quit", handler: function() { Qt.quit() } })
+//             append({ actionId: "edit.preferences", handler: function() { preferencesWindow.show() } })
+//             append({ actionId: "view.increase_scale", handler: function() { ScaleManager.increaseScale() } })
+//             append({ actionId: "view.decrease_scale", handler: function() { ScaleManager.decreaseScale() } })
+//             append({ actionId: "view.reset_scale", handler: function() { ScaleManager.resetScale() } })
+//         }
+
+//         Component.onCompleted: refresh()
+//     }
+
+//     Instantiator {
+//         id: shortcutsInstantiator
+//         model: shortcutsModel
+
+//         delegate: Shortcut {
+//             sequences: KeymapManager.getAllShortcuts(model.actionId)
+//             onActivated: model.handler()
+//         }
+//     }
+    
+//     // Dynamic shortcuts that update when keymaps change
+//     // Repeater {
+//     //     model: ListModel {
+//     //         id: shortcutsModel
+            
+//     //         function refresh() {
+//     //             clear()
+//     //             append({ actionId: "file.quit", handler: function() { Qt.quit() } })
+//     //             append({ actionId: "edit.preferences", handler: function() { preferencesWindow.show() } })
+//     //             append({ actionId: "view.increase_scale", handler: function() { ScaleManager.increaseScale() } })
+//     //             append({ actionId: "view.decrease_scale", handler: function() { ScaleManager.decreaseScale() } })
+//     //             append({ actionId: "view.reset_scale", handler: function() { ScaleManager.resetScale() } })
+//     //         }
+            
+//     //         Component.onCompleted: refresh()
+//     //     }
+        
+//     //     Shortcut {
+//     //         sequences: KeymapManager.getAllShortcuts(modelData.actionId)
+//     //         onActivated: modelData.handler()
+//     //     }
+//     // }
+    
+    
+//     // Update shortcuts when keymaps change
+//     Connections {
+//         target: KeymapManager
+//         function onKeymapsChanged() {
+//             shortcutsModel.refresh()
+//         }
+//     }
+
+//     // ============================================================
+//     // PREFERENCES WINDOW
+//     // ============================================================
+    
+//     // Preferences Window
+//     PreferencesWindow {
+//         id: preferencesWindow
+//     }
+
+//     // ============================================================
+//     // MAIN CONTENT
+//     // ============================================================
+    
+//     ColumnLayout {
+//         anchors.fill: parent
+//         spacing: 0
+        
+//         // Menu Bar
+//         CustomMenuBar {
+//             Layout.fillWidth: true
+            
+//             onPreferencesRequested: preferencesWindow.show()
+//         }
+        
+//         // Main content area
+//         DemoView {
+//             Layout.fillWidth: true
+//             Layout.fillHeight: true
+//         }
+//     }
+// }
+
 
 
 
@@ -155,39 +343,56 @@
 //     contentItem.transformOrigin: Item.TopLeft
 //     contentItem.width: root.width / ScaleManager.scaleFactor
 //     contentItem.height: root.height / ScaleManager.scaleFactor
+
+//     // ============================================================
+//     // DYNAMIC SHORTCUTS (CORRECT IMPLEMENTATION)
+//     // ============================================================
     
-//     // Keyboard shortcuts
-//     Shortcut {
-//         sequence: KeymapManager.getShortcut("file.quit")
-//         onActivated: Qt.quit()
+//     // Map d'actions (actionId -> handler)
+//     property var shortcutHandlers: ({
+//         "file.quit": function() { Qt.quit() },
+//         "edit.preferences": function() { preferencesWindow.show() },
+//         "view.increase_scale": function() { ScaleManager.increaseScale() },
+//         "view.decrease_scale": function() { ScaleManager.decreaseScale() },
+//         "view.reset_scale": function() { ScaleManager.resetScale() }
+//     })
+    
+//     // Créer les shortcuts dynamiquement
+//     Repeater {
+//         model: Object.keys(root.shortcutHandlers)
+        
+//         Shortcut {
+//             sequences: KeymapManager.getAllShortcuts(modelData)
+//             onActivated: {
+//                 var handler = root.shortcutHandlers[modelData]
+//                 if (handler) {
+//                     handler()
+//                 }
+//             }
+//         }
 //     }
     
-//     Shortcut {
-//         sequence: KeymapManager.getShortcut("edit.preferences")
-//         onActivated: preferencesWindow.show()
+//     // Forcer le refresh des shortcuts quand les keymaps changent
+//     Connections {
+//         target: KeymapManager
+//         function onKeymapsChanged() {
+//             // Force la recréation des shortcuts
+//             root.shortcutHandlers = Object.assign({}, root.shortcutHandlers)
+//         }
 //     }
+
+//     // ============================================================
+//     // PREFERENCES WINDOW
+//     // ============================================================
     
-//     Shortcut {
-//         sequence: KeymapManager.getShortcut("view.increase_scale")
-//         onActivated: ScaleManager.increaseScale()
-//     }
-    
-//     Shortcut {
-//         sequence: KeymapManager.getShortcut("view.decrease_scale")
-//         onActivated: ScaleManager.decreaseScale()
-//     }
-    
-//     Shortcut {
-//         sequence: KeymapManager.getShortcut("view.reset_scale")
-//         onActivated: ScaleManager.resetScale()
-//     }
-    
-//     // Preferences Window
 //     PreferencesWindow {
 //         id: preferencesWindow
 //     }
+
+//     // ============================================================
+//     // MAIN CONTENT
+//     // ============================================================
     
-//     // Main content
 //     ColumnLayout {
 //         anchors.fill: parent
 //         spacing: 0
@@ -206,6 +411,9 @@
 //         }
 //     }
 // }
+
+
+
 
 
 import QtQuick
@@ -231,61 +439,57 @@ ApplicationWindow {
     // ============================================================
     // DYNAMIC SHORTCUTS (CORRECT IMPLEMENTATION)
     // ============================================================
-
+    
+    // Map d'actions (actionId -> handler)
+    readonly property var shortcutHandlers: ({
+        "file.quit": function() { Qt.quit() },
+        "edit.preferences": function() { preferencesWindow.show() },
+        "view.increase_scale": function() { ScaleManager.increaseScale() },
+        "view.decrease_scale": function() { ScaleManager.decreaseScale() },
+        "view.reset_scale": function() { ScaleManager.resetScale() }
+    })
+    
+    // Shortcut instantiator model
     ListModel {
-        id: shortcutsModel
-
+        id: shortcutModel
+        
         function refresh() {
             clear()
-            append({ actionId: "file.quit", handler: function() { Qt.quit() } })
-            append({ actionId: "edit.preferences", handler: function() { preferencesWindow.show() } })
-            append({ actionId: "view.increase_scale", handler: function() { ScaleManager.increaseScale() } })
-            append({ actionId: "view.decrease_scale", handler: function() { ScaleManager.decreaseScale() } })
-            append({ actionId: "view.reset_scale", handler: function() { ScaleManager.resetScale() } })
+            var actions = Object.keys(root.shortcutHandlers)
+            for (var i = 0; i < actions.length; i++) {
+                append({ actionId: actions[i] })
+            }
         }
-
+        
         Component.onCompleted: refresh()
     }
-
+    
+    // Créer les shortcuts dynamiquement avec Instantiator
     Instantiator {
-        id: shortcutsInstantiator
-        model: shortcutsModel
-
+        model: shortcutModel
+        
         delegate: Shortcut {
             sequences: KeymapManager.getAllShortcuts(model.actionId)
-            onActivated: model.handler()
+            onActivated: {
+                var handler = root.shortcutHandlers[model.actionId]
+                if (handler) {
+                    console.log("🎹 Shortcut activated:", model.actionId)
+                    handler()
+                }
+            }
+        }
+        
+        onObjectAdded: (index, object) => {
+            console.log("✅ Shortcut created for:", shortcutModel.get(index).actionId)
         }
     }
     
-    // Dynamic shortcuts that update when keymaps change
-    // Repeater {
-    //     model: ListModel {
-    //         id: shortcutsModel
-            
-    //         function refresh() {
-    //             clear()
-    //             append({ actionId: "file.quit", handler: function() { Qt.quit() } })
-    //             append({ actionId: "edit.preferences", handler: function() { preferencesWindow.show() } })
-    //             append({ actionId: "view.increase_scale", handler: function() { ScaleManager.increaseScale() } })
-    //             append({ actionId: "view.decrease_scale", handler: function() { ScaleManager.decreaseScale() } })
-    //             append({ actionId: "view.reset_scale", handler: function() { ScaleManager.resetScale() } })
-    //         }
-            
-    //         Component.onCompleted: refresh()
-    //     }
-        
-    //     Shortcut {
-    //         sequences: KeymapManager.getAllShortcuts(modelData.actionId)
-    //         onActivated: modelData.handler()
-    //     }
-    // }
-    
-    
-    // Update shortcuts when keymaps change
+    // Forcer le refresh des shortcuts quand les keymaps changent
     Connections {
         target: KeymapManager
         function onKeymapsChanged() {
-            shortcutsModel.refresh()
+            console.log("🔄 Keymaps changed, refreshing shortcuts")
+            shortcutModel.refresh()
         }
     }
 
@@ -293,7 +497,6 @@ ApplicationWindow {
     // PREFERENCES WINDOW
     // ============================================================
     
-    // Preferences Window
     PreferencesWindow {
         id: preferencesWindow
     }

@@ -7,6 +7,9 @@ qt_add_library(DesignSystemLib STATIC
     # Storage
     storage/TokenStorage.cpp
     storage/TokenStorage.h
+
+    # Token Definitions
+    tokenDefinitions/tokenDefinitions.h
     
     # Context
     context/ContextManager.cpp
@@ -36,6 +39,8 @@ qt_add_library(DesignSystemLib STATIC
     exposer/DesignSystemRoot.h
     exposer/BaseProxy.cpp
     exposer/BaseProxy.h
+    # exposer/ProxyGenerator.cpp
+    # exposer/ProxyGenerator.h
     
     # Other Proxies
     exposer/DesignSystemProxies.h
